@@ -6,64 +6,52 @@
 <style>body { margin: 0; color-scheme: light dark; } img { max-width: 100%; }</style>
 <title>박유진</title>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@700&family=IBM+Plex+Sans+KR:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=IBM+Plex+Sans+KR:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
   *, *::before, *::after { box-sizing: border-box; }
-  h1, h2, p, ul, li { margin: 0; padding: 0; }
-  ul { list-style: none; }
+  h1, h2, p, table, td, th { margin: 0; padding: 0; }
 
   :root {
-    --paper:   #F7F4F4;
-    --card:    #FFFFFF;
-    --ink:     #1A1517;
-    --muted:   #7C7276;
-    --rule:    #E2DADC;
-    --accent:  #8B0029;
+    --desk:   #EDEBE7;   /* 책상 */
+    --paper:  #FCFCFA;   /* 시험지 */
+    --ink:    #16161A;
+    --muted:  #6F6C6B;
+    --rule:   #CFCBC4;
+    --hair:   #E4E0D9;
+    --shade:  #F3F1EC;   /* 쉬는 시간 줄 */
+    --seal:   #B32821;   /* 도장 빨강 */
 
-    --major-bg: #F1DBE1;
-    --major-fg: #6E122F;
-    --hobby-bg: #EDE5D2;
-    --hobby-fg: #64491A;
-
-    --display: "Gowun Batang", "Nanum Myeongjo", "Apple SD Gothic Neo", "Malgun Gothic", serif;
-    --body:    "IBM Plex Sans KR", "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
-    --mono:    "IBM Plex Mono", ui-monospace, Consolas, monospace;
-
-    --h: 3.4rem;
+    --title: "Gowun Batang", "Nanum Myeongjo", "Batang", serif;
+    --body:  "IBM Plex Sans KR", "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+    --mono:  "IBM Plex Mono", ui-monospace, Consolas, monospace;
   }
 
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
-      --paper:  #121011;
-      --card:   #1A1719;
-      --ink:    #F0EBEC;
-      --muted:  #948A8D;
-      --rule:   #2E292B;
-      --accent: #E06880;
-
-      --major-bg: #3B1A25;
-      --major-fg: #F2C6D1;
-      --hobby-bg: #322819;
-      --hobby-fg: #E9D0A2;
+      --desk:  #0F0F11;
+      --paper: #1A1A1D;
+      --ink:   #EDEBE7;
+      --muted: #9A9693;
+      --rule:  #45423E;
+      --hair:  #2C2A2C;
+      --shade: #222225;
+      --seal:  #E4695F;
     }
   }
 
   :root[data-theme="dark"] {
-    --paper:  #121011;
-    --card:   #1A1719;
-    --ink:    #F0EBEC;
-    --muted:  #948A8D;
-    --rule:   #2E292B;
-    --accent: #E06880;
-
-    --major-bg: #3B1A25;
-    --major-fg: #F2C6D1;
-    --hobby-bg: #322819;
-    --hobby-fg: #E9D0A2;
+    --desk:  #0F0F11;
+    --paper: #1A1A1D;
+    --ink:   #EDEBE7;
+    --muted: #9A9693;
+    --rule:  #45423E;
+    --hair:  #2C2A2C;
+    --shade: #222225;
+    --seal:  #E4695F;
   }
 
   body {
-    background: var(--paper);
+    background: var(--desk);
     color: var(--ink);
     font-family: var(--body);
     font-weight: 400;
@@ -73,267 +61,312 @@
   }
 
   .page {
-    max-width: 46rem;
+    max-width: 42rem;
     margin-inline: auto;
-    padding-inline: clamp(1rem, 5vw, 3rem);
-    padding-block: clamp(2.5rem, 8vh, 4.5rem) clamp(2.5rem, 7vh, 4rem);
+    padding-inline: clamp(0.75rem, 4vw, 2rem);
+    padding-block: clamp(1.75rem, 6vh, 3.5rem);
+  }
+
+  .sheet {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    padding: clamp(1.25rem, 5vw, 2.75rem);
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 1.6rem;
   }
 
-  /* ---------- 상단: 학기 표지 ---------- */
+  /* ---------- 시험지 머리 ---------- */
 
-  .top {
-    display: flex;
-    align-items: baseline;
-    flex-wrap: wrap;
-    gap: 0.5rem 1rem;
-    padding-bottom: 1.1rem;
-    border-bottom: 2px solid var(--ink);
-  }
+  .head { text-align: center; }
 
-  .term {
+  .head .year {
     font-family: var(--mono);
-    font-size: 0.68rem;
+    font-size: 0.66rem;
     font-weight: 500;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.28em;
     color: var(--muted);
-    flex-basis: 100%;
-    margin-bottom: 0.35rem;
   }
 
-  h1 {
-    font-family: var(--display);
+  .head h1 {
+    font-family: var(--title);
     font-weight: 700;
-    font-size: clamp(2.25rem, 8vw, 3.25rem);
-    letter-spacing: -0.02em;
-    line-height: 1;
+    font-size: clamp(1.35rem, 5.5vw, 2rem);
+    letter-spacing: 0.02em;
+    line-height: 1.35;
+    margin-top: 0.5rem;
+    text-wrap: balance;
   }
 
-  .dept {
-    font-size: 0.95rem;
-    font-weight: 300;
+  .rules {
+    border-top: 2px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+    height: 3px;
+    margin-top: 1.1rem;
+  }
+
+  /* ---------- 수험생 정보란 ---------- */
+
+  .info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+    border: 1px solid var(--rule);
+  }
+
+  .info > div {
+    padding: 0.7rem 0.85rem;
+    border-right: 1px solid var(--rule);
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    min-height: 3.6rem;
+    justify-content: center;
+  }
+
+  .info > div:last-child { border-right: none; }
+
+  .info .k {
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
     color: var(--muted);
+  }
+
+  .info .v { font-size: 0.95rem; font-weight: 500; }
+  .info .v.name { font-size: 1.15rem; font-weight: 600; letter-spacing: 0.04em; }
+
+  .info .seal {
+    align-self: flex-start;
+    border: 1.5px solid var(--seal);
+    color: var(--seal);
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.2em;
+    padding: 0.28rem 0.5rem;
+    border-radius: 2px;
+    opacity: 0.85;
   }
 
   /* ---------- 시간표 ---------- */
 
-  .sheet {
-    background: var(--card);
-    border: 1px solid var(--rule);
-    border-radius: 4px;
-    overflow: hidden;
-  }
+  .wrap { overflow-x: auto; }
 
-  .grid {
-    display: grid;
-    grid-template-columns: 2.5rem repeat(5, minmax(0, 1fr));
-    grid-template-rows: 2.1rem repeat(9, var(--h));
-  }
-
-  .day {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.78rem;
-    letter-spacing: 0.08em;
-    color: var(--muted);
-    border-bottom: 1px solid var(--rule);
-  }
-
-  .hour {
-    grid-column: 1;
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-end;
-    padding: 0.3rem 0.45rem 0 0;
-    font-family: var(--mono);
-    font-size: 0.68rem;
-    font-weight: 500;
+  table {
+    width: 100%;
+    border-collapse: collapse;
     font-variant-numeric: tabular-nums;
-    color: var(--muted);
   }
 
-  /* 요일 세로선 + 정시 가로선 */
-  .lines {
-    grid-column: 2 / -1;
-    grid-row: 2 / -1;
-    background-image:
-      linear-gradient(to right, var(--rule) 0 1px, transparent 1px),
-      repeating-linear-gradient(to bottom, var(--rule) 0 1px, transparent 1px var(--h));
-    background-size: calc(100% / 5) 100%, 100% 100%;
-    background-repeat: repeat-x, no-repeat;
-    pointer-events: none;
-  }
-
-  .block {
-    margin: 2px;
-    padding: 0.5rem 0.55rem;
-    border-radius: 3px;
-    display: flex;
-    flex-direction: column;
-    gap: 0.2rem;
-    overflow: hidden;
-    z-index: 1;
-  }
-
-  .block .t {
-    font-size: 0.8rem;
-    font-weight: 500;
-    line-height: 1.25;
-  }
-
-  .block .m {
-    font-family: var(--mono);
-    font-size: 0.62rem;
-    letter-spacing: 0.03em;
-    opacity: 0.75;
-    line-height: 1.3;
-  }
-
-  .block.major { background: var(--major-bg); color: var(--major-fg); }
-  .block.hobby { background: var(--hobby-bg); color: var(--hobby-fg); }
-
-  .block.open {
-    background: none;
-    border: 1px dashed var(--rule);
-    color: var(--muted);
-  }
-
-  .block.open .t {
-    font-family: var(--display);
-    font-size: 0.95rem;
-    font-weight: 700;
-  }
-
-  /* ---------- 하단: 비고란 ---------- */
-
-  .memo {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
-    border: 1px solid var(--rule);
-    border-radius: 4px;
-    background: var(--card);
-  }
-
-  .memo div {
-    padding: 0.9rem 1rem;
-    border-right: 1px solid var(--rule);
-    display: flex;
-    flex-direction: column;
-    min-height: 4.25rem;
-  }
-
-  .memo div:last-child { border-right: none; }
-
-  .memo .k {
-    font-family: var(--mono);
-    font-size: 0.62rem;
+  caption {
+    text-align: left;
+    font-size: 0.66rem;
     font-weight: 500;
     letter-spacing: 0.16em;
-    text-transform: uppercase;
     color: var(--muted);
+    padding-bottom: 0.6rem;
   }
 
-  .memo .v {
-    font-family: var(--mono);
-    font-size: 0.85rem;
+  thead th {
+    font-size: 0.66rem;
     font-weight: 500;
     letter-spacing: 0.1em;
-    color: var(--accent);
-    margin-top: 0.55rem;
+    color: var(--muted);
+    text-align: left;
+    padding: 0.5rem 0.6rem;
+    border-top: 1.5px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+    white-space: nowrap;
   }
+
+  tbody td {
+    padding: 0.7rem 0.6rem;
+    border-bottom: 1px solid var(--hair);
+    vertical-align: middle;
+  }
+
+  tbody tr:last-child td { border-bottom: 1.5px solid var(--ink); }
+
+  .no {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: var(--muted);
+    white-space: nowrap;
+    width: 3.4rem;
+  }
+
+  .area .t { font-size: 0.92rem; font-weight: 500; line-height: 1.35; }
+
+  .area .s {
+    display: block;
+    font-family: var(--mono);
+    font-size: 0.66rem;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+    margin-top: 0.2rem;
+  }
+
+  .time {
+    font-family: var(--mono);
+    font-size: 0.76rem;
+    white-space: nowrap;
+    width: 7.5rem;
+  }
+
+  .span {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--muted);
+    white-space: nowrap;
+    text-align: right;
+    width: 3.6rem;
+  }
+
+  /* 쉬는 시간 줄 */
+  tr.rest td { background: var(--shade); color: var(--muted); }
+  tr.rest .area .t { font-size: 0.8rem; font-weight: 400; }
 
   /* 아직 채우지 않은 칸 */
   .blank {
+    display: block;
+    width: 7rem;
+    max-width: 100%;
     height: 1px;
-    width: 100%;
-    max-width: 8rem;
     background: var(--rule);
-    margin-top: 1.1rem;
+    margin-top: 0.6rem;
   }
 
-  @media (max-width: 560px) {
-    :root { --h: 3rem; }
-    .grid { grid-template-columns: 2rem repeat(5, minmax(0, 1fr)); }
-    .block { padding: 0.4rem 0.35rem; margin: 1.5px; }
-    .block .t { font-size: 0.7rem; }
-    .block .m { font-size: 0.56rem; }
-    .block.open .t { font-size: 0.8rem; }
-    .memo div { border-right: none; border-bottom: 1px solid var(--rule); }
-    .memo div:last-child { border-bottom: none; }
+  .area .s.pending { font-family: var(--title); font-size: 0.85rem; font-weight: 700; color: var(--ink); }
+
+  /* ---------- 유의사항 ---------- */
+
+  .notice {
+    border: 1px solid var(--rule);
+    padding: 0.9rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .notice p {
+    font-size: 0.72rem;
+    font-weight: 300;
+    line-height: 1.65;
+    color: var(--muted);
+    padding-left: 0.9rem;
+    text-indent: -0.9rem;
+  }
+
+  .notice p b { color: var(--seal); font-weight: 500; }
+
+  @media (max-width: 480px) {
+    .sheet { gap: 1.25rem; }
+    .no { width: 2.9rem; font-size: 0.66rem; }
+    .time { width: 6.4rem; font-size: 0.68rem; }
+    .span { width: 3rem; font-size: 0.66rem; }
+    tbody td { padding: 0.6rem 0.35rem; }
+    thead th { padding: 0.45rem 0.35rem; }
+    .area .t { font-size: 0.84rem; }
+    .info > div { border-right: none; border-bottom: 1px solid var(--rule); }
+    .info > div:last-child { border-bottom: none; }
   }
 </style>
 
 </head>
 <body>
 <div class="page">
-
-  <header class="top">
-    <p class="term">2026학년도 2학기</p>
-    <h1>박유진</h1>
-    <p class="dept">고려대학교 인공지능학과</p>
-  </header>
-
   <div class="sheet">
-    <div class="grid">
-      <div></div>
-      <div class="day">월</div>
-      <div class="day">화</div>
-      <div class="day">수</div>
-      <div class="day">목</div>
-      <div class="day">금</div>
 
-      <div class="lines"></div>
+    <header class="head">
+      <p class="year">2026학년도</p>
+      <h1>자기소개 시간표</h1>
+      <div class="rules"></div>
+    </header>
 
-      <div class="hour" style="grid-row: 2">09</div>
-      <div class="hour" style="grid-row: 3">10</div>
-      <div class="hour" style="grid-row: 4">11</div>
-      <div class="hour" style="grid-row: 5">12</div>
-      <div class="hour" style="grid-row: 6">13</div>
-      <div class="hour" style="grid-row: 7">14</div>
-      <div class="hour" style="grid-row: 8">15</div>
-      <div class="hour" style="grid-row: 9">16</div>
-      <div class="hour" style="grid-row: 10">17</div>
-
-      <div class="block major" style="grid-column: 2; grid-row: 3 / 5">
-        <span class="t">인공지능학과</span>
-        <span class="m">고려대학교</span>
+    <section class="info">
+      <div>
+        <span class="k">성명</span>
+        <span class="v name">박유진</span>
       </div>
-
-      <div class="block major" style="grid-column: 5; grid-row: 6 / 8">
-        <span class="t">인공지능학과</span>
-        <span class="m">고려대학교</span>
+      <div>
+        <span class="k">소속</span>
+        <span class="v">고려대학교 인공지능학과</span>
       </div>
-
-      <div class="block hobby" style="grid-column: 4; grid-row: 9 / 11">
-        <span class="t">기타 🎸</span>
-        <span class="m">E A D G B E</span>
+      <div>
+        <span class="k">수험번호</span>
+        <span class="blank"></span>
       </div>
-
-      <div class="block open" style="grid-column: 6; grid-row: 3 / 5">
-        <span class="t">아직 없어요…</span>
-        <span class="m">프로젝트</span>
+      <div>
+        <span class="k">확인</span>
+        <span class="seal">미정</span>
       </div>
+    </section>
+
+    <div class="wrap">
+      <table>
+        <caption>시험 시간표</caption>
+        <thead>
+          <tr>
+            <th scope="col">교시</th>
+            <th scope="col">영역</th>
+            <th scope="col">시간</th>
+            <th scope="col">소요</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="rest">
+            <td class="no">—</td>
+            <td class="area"><span class="t">입실 완료</span></td>
+            <td class="time">~ 08:10</td>
+            <td class="span">—</td>
+          </tr>
+          <tr>
+            <td class="no">1교시</td>
+            <td class="area"><span class="t">인공지능</span><span class="s">고려대학교 인공지능학과</span></td>
+            <td class="time">08:40 ~ 10:00</td>
+            <td class="span">80분</td>
+          </tr>
+          <tr>
+            <td class="no">2교시</td>
+            <td class="area"><span class="t">기타 🎸</span><span class="s">E A D G B E</span></td>
+            <td class="time">10:30 ~ 12:00</td>
+            <td class="span">100분</td>
+          </tr>
+          <tr class="rest">
+            <td class="no">—</td>
+            <td class="area"><span class="t">점심시간</span></td>
+            <td class="time">12:00 ~ 13:00</td>
+            <td class="span">60분</td>
+          </tr>
+          <tr>
+            <td class="no">3교시</td>
+            <td class="area"><span class="t">관심 분야</span><span class="blank"></span></td>
+            <td class="time">13:10 ~ 14:20</td>
+            <td class="span">70분</td>
+          </tr>
+          <tr>
+            <td class="no">4교시</td>
+            <td class="area"><span class="t">프로젝트</span><span class="s pending">아직 없어요…</span></td>
+            <td class="time">14:50 ~ 16:37</td>
+            <td class="span">107분</td>
+          </tr>
+          <tr>
+            <td class="no">5교시</td>
+            <td class="area"><span class="t">연락처</span><span class="blank"></span></td>
+            <td class="time">17:05 ~ 17:45</td>
+            <td class="span">40분</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
+
+    <section class="notice">
+      <p>※ 시험 시간은 실제 대학수학능력시험 시간표를 그대로 따랐습니다.</p>
+      <p>※ <b>3교시 관심 분야</b>와 <b>5교시 연락처</b>는 아직 작성하지 않았습니다.</p>
+      <p>※ 4교시는 준비되는 대로 채웁니다.</p>
+    </section>
+
   </div>
-
-  <div class="memo">
-    <div>
-      <span class="k">관심 분야</span>
-      <span class="blank"></span>
-    </div>
-    <div>
-      <span class="k">연락처</span>
-      <span class="blank"></span>
-    </div>
-    <div>
-      <span class="k">튜닝</span>
-      <span class="v">E A D G B E</span>
-    </div>
-  </div>
-
 </div>
 </body>
 </html>
