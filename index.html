@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  body { margin: 0; font: 14px system-ui, sans-serif; color-scheme: light dark; }
+  img { max-width: 100%; }
+  h1, h2, p, ul { margin: 0; }
+  ul { padding: 0; }
+</style>
+<title>박유진</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=IBM+Plex+Sans+KR:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    --paper:   #F7F4F4;
+    --ink:     #1A1517;
+    --muted:   #736A6D;
+    --rule:    #DED6D7;
+    --accent:  #8B0029;
+
+    --display: "Gowun Batang", "Nanum Myeongjo", "Apple SD Gothic Neo", "Malgun Gothic", serif;
+    --body:    "IBM Plex Sans KR", "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+    --mono:    "IBM Plex Mono", ui-monospace, "Consolas", monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper:  #131011;
+      --ink:    #F0EBEC;
+      --muted:  #948A8D;
+      --rule:   #2C2729;
+      --accent: #E06880;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --paper:  #131011;
+    --ink:    #F0EBEC;
+    --muted:  #948A8D;
+    --rule:   #2C2729;
+    --accent: #E06880;
+  }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--body);
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    word-break: keep-all;
+    line-break: strict;
+  }
+
+  .page {
+    max-width: 44rem;
+    margin-inline: auto;
+    padding-inline: clamp(1.25rem, 6vw, 4.5rem);
+    padding-block: clamp(3.5rem, 11vh, 6.5rem) clamp(3rem, 9vh, 5rem);
+    display: flex;
+    flex-direction: column;
+    gap: clamp(3rem, 8vh, 4.75rem);
+  }
+
+  /* ---------- hero ---------- */
+
+  .hero {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1.75rem;
+  }
+
+  h1 {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(3.75rem, 15vw, 7rem);
+    line-height: 0.92;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.5rem;
+    text-wrap: balance;
+  }
+
+  .hero p.line {
+    font-size: clamp(1rem, 2.6vw, 1.15rem);
+    font-weight: 300;
+    line-height: 1.7;
+    color: var(--ink);
+  }
+
+  .hero p.line + p.line { color: var(--muted); }
+
+  /* ---------- six strings, standard tuning ---------- */
+
+  .strings {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    padding-block: 0.5rem;
+  }
+
+  .str {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  .str .note {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    width: 1.5rem;
+    flex: none;
+  }
+
+  .str .wire {
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+    transform-origin: center;
+  }
+
+  .str[data-gauge="6"] .wire { height: 3px; }
+  .str[data-gauge="5"] .wire { height: 2.5px; }
+  .str[data-gauge="4"] .wire { height: 2px; }
+  .str[data-gauge="3"] .wire { height: 1.5px; }
+  .str[data-gauge="2"] .wire { height: 1.5px; }
+  .str[data-gauge="1"] .wire { height: 1px; }
+
+  .str:hover .wire,
+  .str:focus-visible .wire {
+    background: var(--accent);
+    animation: pluck 0.55s cubic-bezier(0.25, 0.8, 0.3, 1);
+  }
+
+  .str:hover .note,
+  .str:focus-visible .note { color: var(--accent); }
+
+  .str:focus-visible { outline: none; }
+
+  @keyframes pluck {
+    0%   { transform: scaleY(3.2); }
+    25%  { transform: scaleY(0.4); }
+    50%  { transform: scaleY(2); }
+    75%  { transform: scaleY(0.7); }
+    100% { transform: scaleY(1); }
+  }
+
+  /* ---------- sections ---------- */
+
+  section, footer { display: flex; flex-direction: column; gap: 1.1rem; }
+
+  .label {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .tags {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1rem;
+    font-size: 1.05rem;
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  .tags li + li::before {
+    content: "·";
+    color: var(--rule);
+    margin-right: 1rem;
+  }
+
+  .soon {
+    border: 1px dashed var(--rule);
+    border-radius: 2px;
+    padding: 1.75rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .soon strong {
+    font-family: var(--display);
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  .soon span {
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: var(--muted);
+  }
+
+  .links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .links li {
+    display: flex;
+    align-items: baseline;
+    gap: 1.25rem;
+    padding-block: 0.7rem;
+    border-top: 1px solid var(--rule);
+    font-size: 0.95rem;
+    font-weight: 300;
+  }
+
+  .links li:last-child { border-bottom: 1px solid var(--rule); }
+
+  .links .k {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    width: 5rem;
+    flex: none;
+  }
+
+  .links .v { color: var(--muted); font-style: normal; }
+
+  .sig {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    color: var(--muted);
+    margin-top: 0.5rem;
+  }
+
+  .sig b { color: var(--accent); font-weight: 500; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .str:hover .wire, .str:focus-visible .wire { animation: none; }
+  }
+</style>
+
+</head>
+<body>
+<div class="page">
+
+  <header class="hero">
+    <p class="eyebrow">Who am I</p>
+    <h1>박유진</h1>
+    <p class="line">고려대학교 인공지능학과</p>
+    <p class="line">기타 치는 사람 🎸</p>
+  </header>
+
+  <div class="strings" role="img" aria-label="기타 표준 튜닝: 6번 줄부터 E A D G B E">
+    <div class="str" data-gauge="6" tabindex="0"><span class="note">E</span><span class="wire"></span></div>
+    <div class="str" data-gauge="5" tabindex="0"><span class="note">A</span><span class="wire"></span></div>
+    <div class="str" data-gauge="4" tabindex="0"><span class="note">D</span><span class="wire"></span></div>
+    <div class="str" data-gauge="3" tabindex="0"><span class="note">G</span><span class="wire"></span></div>
+    <div class="str" data-gauge="2" tabindex="0"><span class="note">B</span><span class="wire"></span></div>
+    <div class="str" data-gauge="1" tabindex="0"><span class="note">E</span><span class="wire"></span></div>
+  </div>
+
+  <section>
+    <h2 class="label">관심 분야</h2>
+    <ul class="tags">
+      <li>대규모 언어모델</li>
+      <li>딥러닝</li>
+      <li>음악과 AI</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2 class="label">프로젝트</h2>
+    <div class="soon">
+      <strong>아직 없어요…</strong>
+      <span>곧 이 자리를 채웁니다.</span>
+    </div>
+  </section>
+
+  <footer>
+    <h2 class="label">연락처</h2>
+    <ul class="links">
+      <li><span class="k">Email</span><span class="v">준비 중</span></li>
+      <li><span class="k">GitHub</span><span class="v">준비 중</span></li>
+    </ul>
+    <p class="sig">TUNING <b>E A D G B E</b> · SEOUL</p>
+  </footer>
+
+</div>
+</body>
+</html>
