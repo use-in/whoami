@@ -3,45 +3,63 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-  *, *::before, *::after { box-sizing: border-box; }
-  body { margin: 0; font: 14px system-ui, sans-serif; color-scheme: light dark; }
-  img { max-width: 100%; }
-  h1, h2, p, ul { margin: 0; }
-  ul { padding: 0; }
-</style>
+<style>body { margin: 0; color-scheme: light dark; } img { max-width: 100%; }</style>
 <title>박유진</title>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=IBM+Plex+Sans+KR:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@700&family=IBM+Plex+Sans+KR:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
+  *, *::before, *::after { box-sizing: border-box; }
+  h1, h2, p, ul, li { margin: 0; padding: 0; }
+  ul { list-style: none; }
+
   :root {
     --paper:   #F7F4F4;
+    --card:    #FFFFFF;
     --ink:     #1A1517;
-    --muted:   #736A6D;
-    --rule:    #DED6D7;
+    --muted:   #7C7276;
+    --rule:    #E2DADC;
     --accent:  #8B0029;
+
+    --major-bg: #F1DBE1;
+    --major-fg: #6E122F;
+    --hobby-bg: #EDE5D2;
+    --hobby-fg: #64491A;
 
     --display: "Gowun Batang", "Nanum Myeongjo", "Apple SD Gothic Neo", "Malgun Gothic", serif;
     --body:    "IBM Plex Sans KR", "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
-    --mono:    "IBM Plex Mono", ui-monospace, "Consolas", monospace;
+    --mono:    "IBM Plex Mono", ui-monospace, Consolas, monospace;
+
+    --h: 3.4rem;
   }
 
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
-      --paper:  #131011;
+      --paper:  #121011;
+      --card:   #1A1719;
       --ink:    #F0EBEC;
       --muted:  #948A8D;
-      --rule:   #2C2729;
+      --rule:   #2E292B;
       --accent: #E06880;
+
+      --major-bg: #3B1A25;
+      --major-fg: #F2C6D1;
+      --hobby-bg: #322819;
+      --hobby-fg: #E9D0A2;
     }
   }
 
   :root[data-theme="dark"] {
-    --paper:  #131011;
+    --paper:  #121011;
+    --card:   #1A1719;
     --ink:    #F0EBEC;
     --muted:  #948A8D;
-    --rule:   #2C2729;
+    --rule:   #2E292B;
     --accent: #E06880;
+
+    --major-bg: #3B1A25;
+    --major-fg: #F2C6D1;
+    --hobby-bg: #322819;
+    --hobby-fg: #E9D0A2;
   }
 
   body {
@@ -55,196 +73,196 @@
   }
 
   .page {
-    max-width: 44rem;
+    max-width: 46rem;
     margin-inline: auto;
-    padding-inline: clamp(1.25rem, 6vw, 4.5rem);
-    padding-block: clamp(3.5rem, 11vh, 6.5rem) clamp(3rem, 9vh, 5rem);
+    padding-inline: clamp(1rem, 5vw, 3rem);
+    padding-block: clamp(2.5rem, 8vh, 4.5rem) clamp(2.5rem, 7vh, 4rem);
     display: flex;
     flex-direction: column;
-    gap: clamp(3rem, 8vh, 4.75rem);
+    gap: 1.5rem;
   }
 
-  /* ---------- hero ---------- */
+  /* ---------- 상단: 학기 표지 ---------- */
 
-  .hero {
+  .top {
     display: flex;
-    flex-direction: column;
-    gap: 0;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+    padding-bottom: 1.1rem;
+    border-bottom: 2px solid var(--ink);
   }
 
-  .eyebrow {
+  .term {
     font-family: var(--mono);
-    font-size: 0.7rem;
+    font-size: 0.68rem;
     font-weight: 500;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
+    letter-spacing: 0.18em;
     color: var(--muted);
-    margin-bottom: 1.75rem;
+    flex-basis: 100%;
+    margin-bottom: 0.35rem;
   }
 
   h1 {
     font-family: var(--display);
     font-weight: 700;
-    font-size: clamp(3.75rem, 15vw, 7rem);
-    line-height: 0.92;
-    letter-spacing: -0.03em;
-    margin-bottom: 1.5rem;
-    text-wrap: balance;
+    font-size: clamp(2.25rem, 8vw, 3.25rem);
+    letter-spacing: -0.02em;
+    line-height: 1;
   }
 
-  .hero p.line {
-    font-size: clamp(1rem, 2.6vw, 1.15rem);
+  .dept {
+    font-size: 0.95rem;
     font-weight: 300;
-    line-height: 1.7;
-    color: var(--ink);
+    color: var(--muted);
   }
 
-  .hero p.line + p.line { color: var(--muted); }
+  /* ---------- 시간표 ---------- */
 
-  /* ---------- six strings, standard tuning ---------- */
-
-  .strings {
-    display: flex;
-    flex-direction: column;
-    gap: 0.85rem;
-    padding-block: 0.5rem;
+  .sheet {
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    overflow: hidden;
   }
 
-  .str {
+  .grid {
+    display: grid;
+    grid-template-columns: 2.5rem repeat(5, minmax(0, 1fr));
+    grid-template-rows: 2.1rem repeat(9, var(--h));
+  }
+
+  .day {
     display: flex;
     align-items: center;
-    gap: 1.25rem;
+    justify-content: center;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    border-bottom: 1px solid var(--rule);
   }
 
-  .str .note {
+  .hour {
+    grid-column: 1;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    padding: 0.3rem 0.45rem 0 0;
     font-family: var(--mono);
     font-size: 0.68rem;
     font-weight: 500;
-    letter-spacing: 0.12em;
+    font-variant-numeric: tabular-nums;
     color: var(--muted);
-    width: 1.5rem;
-    flex: none;
   }
 
-  .str .wire {
-    flex: 1;
-    height: 1px;
-    background: var(--rule);
-    transform-origin: center;
+  /* 요일 세로선 + 정시 가로선 */
+  .lines {
+    grid-column: 2 / -1;
+    grid-row: 2 / -1;
+    background-image:
+      linear-gradient(to right, var(--rule) 0 1px, transparent 1px),
+      repeating-linear-gradient(to bottom, var(--rule) 0 1px, transparent 1px var(--h));
+    background-size: calc(100% / 5) 100%, 100% 100%;
+    background-repeat: repeat-x, no-repeat;
+    pointer-events: none;
   }
 
-  .str[data-gauge="6"] .wire { height: 3px; }
-  .str[data-gauge="5"] .wire { height: 2.5px; }
-  .str[data-gauge="4"] .wire { height: 2px; }
-  .str[data-gauge="3"] .wire { height: 1.5px; }
-  .str[data-gauge="2"] .wire { height: 1.5px; }
-  .str[data-gauge="1"] .wire { height: 1px; }
-
-  .str:hover .wire,
-  .str:focus-visible .wire {
-    background: var(--accent);
-    animation: pluck 0.55s cubic-bezier(0.25, 0.8, 0.3, 1);
+  .block {
+    margin: 2px;
+    padding: 0.5rem 0.55rem;
+    border-radius: 3px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    overflow: hidden;
+    z-index: 1;
   }
 
-  .str:hover .note,
-  .str:focus-visible .note { color: var(--accent); }
-
-  .str:focus-visible { outline: none; }
-
-  @keyframes pluck {
-    0%   { transform: scaleY(3.2); }
-    25%  { transform: scaleY(0.4); }
-    50%  { transform: scaleY(2); }
-    75%  { transform: scaleY(0.7); }
-    100% { transform: scaleY(1); }
-  }
-
-  /* ---------- sections ---------- */
-
-  section, footer { display: flex; flex-direction: column; gap: 1.1rem; }
-
-  .label {
-    font-family: var(--mono);
-    font-size: 0.7rem;
+  .block .t {
+    font-size: 0.8rem;
     font-weight: 500;
-    letter-spacing: 0.2em;
+    line-height: 1.25;
+  }
+
+  .block .m {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.03em;
+    opacity: 0.75;
+    line-height: 1.3;
+  }
+
+  .block.major { background: var(--major-bg); color: var(--major-fg); }
+  .block.hobby { background: var(--hobby-bg); color: var(--hobby-fg); }
+
+  .block.open {
+    background: none;
+    border: 1px dashed var(--rule);
+    color: var(--muted);
+  }
+
+  .block.open .t {
+    font-family: var(--display);
+    font-size: 0.95rem;
+    font-weight: 700;
+  }
+
+  /* ---------- 하단: 비고란 ---------- */
+
+  .memo {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    background: var(--card);
+  }
+
+  .memo div {
+    padding: 0.9rem 1rem;
+    border-right: 1px solid var(--rule);
+    display: flex;
+    flex-direction: column;
+    min-height: 4.25rem;
+  }
+
+  .memo div:last-child { border-right: none; }
+
+  .memo .k {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
     color: var(--muted);
   }
 
-  /* an unfilled field: a ruled line waiting for its content */
+  .memo .v {
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    margin-top: 0.55rem;
+  }
+
+  /* 아직 채우지 않은 칸 */
   .blank {
     height: 1px;
     width: 100%;
-    max-width: 11rem;
+    max-width: 8rem;
     background: var(--rule);
-    margin-block: 0.9rem;
+    margin-top: 1.1rem;
   }
 
-  .soon {
-    border: 1px dashed var(--rule);
-    border-radius: 2px;
-    padding: 1.75rem 1.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-  }
-
-  .soon strong {
-    font-family: var(--display);
-    font-size: 1.35rem;
-    font-weight: 700;
-    letter-spacing: -0.01em;
-  }
-
-  .soon span {
-    font-size: 0.9rem;
-    font-weight: 300;
-    color: var(--muted);
-  }
-
-  .links {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .links li {
-    display: flex;
-    align-items: baseline;
-    gap: 1.25rem;
-    padding-block: 0.7rem;
-    border-top: 1px solid var(--rule);
-    font-size: 0.95rem;
-    font-weight: 300;
-  }
-
-  .links li:last-child { border-bottom: 1px solid var(--rule); }
-
-  .links .k {
-    font-family: var(--mono);
-    font-size: 0.7rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--muted);
-    width: 5rem;
-    flex: none;
-  }
-
-  .links .blank { margin-block: 0; align-self: center; max-width: 9rem; }
-
-  .sig {
-    font-family: var(--mono);
-    font-size: 0.68rem;
-    letter-spacing: 0.14em;
-    color: var(--muted);
-    margin-top: 0.5rem;
-  }
-
-  .sig b { color: var(--accent); font-weight: 500; }
-
-  @media (prefers-reduced-motion: reduce) {
-    .str:hover .wire, .str:focus-visible .wire { animation: none; }
+  @media (max-width: 560px) {
+    :root { --h: 3rem; }
+    .grid { grid-template-columns: 2rem repeat(5, minmax(0, 1fr)); }
+    .block { padding: 0.4rem 0.35rem; margin: 1.5px; }
+    .block .t { font-size: 0.7rem; }
+    .block .m { font-size: 0.56rem; }
+    .block.open .t { font-size: 0.8rem; }
+    .memo div { border-right: none; border-bottom: 1px solid var(--rule); }
+    .memo div:last-child { border-bottom: none; }
   }
 </style>
 
@@ -252,43 +270,69 @@
 <body>
 <div class="page">
 
-  <header class="hero">
-    <p class="eyebrow">Who am I</p>
+  <header class="top">
+    <p class="term">2026학년도 2학기</p>
     <h1>박유진</h1>
-    <p class="line">고려대학교 인공지능학과</p>
-    <p class="line">기타 치는 사람 🎸</p>
+    <p class="dept">고려대학교 인공지능학과</p>
   </header>
 
-  <div class="strings" role="img" aria-label="기타 표준 튜닝: 6번 줄부터 E A D G B E">
-    <div class="str" data-gauge="6" tabindex="0"><span class="note">E</span><span class="wire"></span></div>
-    <div class="str" data-gauge="5" tabindex="0"><span class="note">A</span><span class="wire"></span></div>
-    <div class="str" data-gauge="4" tabindex="0"><span class="note">D</span><span class="wire"></span></div>
-    <div class="str" data-gauge="3" tabindex="0"><span class="note">G</span><span class="wire"></span></div>
-    <div class="str" data-gauge="2" tabindex="0"><span class="note">B</span><span class="wire"></span></div>
-    <div class="str" data-gauge="1" tabindex="0"><span class="note">E</span><span class="wire"></span></div>
+  <div class="sheet">
+    <div class="grid">
+      <div></div>
+      <div class="day">월</div>
+      <div class="day">화</div>
+      <div class="day">수</div>
+      <div class="day">목</div>
+      <div class="day">금</div>
+
+      <div class="lines"></div>
+
+      <div class="hour" style="grid-row: 2">09</div>
+      <div class="hour" style="grid-row: 3">10</div>
+      <div class="hour" style="grid-row: 4">11</div>
+      <div class="hour" style="grid-row: 5">12</div>
+      <div class="hour" style="grid-row: 6">13</div>
+      <div class="hour" style="grid-row: 7">14</div>
+      <div class="hour" style="grid-row: 8">15</div>
+      <div class="hour" style="grid-row: 9">16</div>
+      <div class="hour" style="grid-row: 10">17</div>
+
+      <div class="block major" style="grid-column: 2; grid-row: 3 / 5">
+        <span class="t">인공지능학과</span>
+        <span class="m">고려대학교</span>
+      </div>
+
+      <div class="block major" style="grid-column: 5; grid-row: 6 / 8">
+        <span class="t">인공지능학과</span>
+        <span class="m">고려대학교</span>
+      </div>
+
+      <div class="block hobby" style="grid-column: 4; grid-row: 9 / 11">
+        <span class="t">기타 🎸</span>
+        <span class="m">E A D G B E</span>
+      </div>
+
+      <div class="block open" style="grid-column: 6; grid-row: 3 / 5">
+        <span class="t">아직 없어요…</span>
+        <span class="m">프로젝트</span>
+      </div>
+    </div>
   </div>
 
-  <section>
-    <h2 class="label">관심 분야</h2>
-    <div class="blank"></div>
-  </section>
-
-  <section>
-    <h2 class="label">프로젝트</h2>
-    <div class="soon">
-      <strong>아직 없어요…</strong>
-      <span>곧 이 자리를 채웁니다.</span>
+  <div class="memo">
+    <div>
+      <span class="k">관심 분야</span>
+      <span class="blank"></span>
     </div>
-  </section>
-
-  <footer>
-    <h2 class="label">연락처</h2>
-    <ul class="links">
-      <li><span class="k">Email</span><span class="blank"></span></li>
-      <li><span class="k">GitHub</span><span class="blank"></span></li>
-    </ul>
-    <p class="sig">TUNING <b>E A D G B E</b> · SEOUL</p>
-  </footer>
+    <div>
+      <span class="k">연락처</span>
+      <span class="blank"></span>
+    </div>
+    <div>
+      <span class="k">튜닝</span>
+      <span class="v">E A D G B E</span>
+    </div>
+  </div>
 
 </div>
 </body>
